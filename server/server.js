@@ -5,21 +5,24 @@ import connectDB from "./config/mongodb.js";
 import userRouter from "./routes/userRoutes.js";
 import imageRouter from "./routes/imageRoutes.js";
 
-const PORT = process.env.PORT || 4000;
-
 const app = express();
 
-// ✅ Configure CORS to allow only your frontend
+// CORS config
 app.use(cors({
   origin: "https://imagify-frontend-jade.vercel.app",
   credentials: true,
 }));
 
 app.use(express.json());
+
+// DB connection
 await connectDB();
 
+// Routes
 app.use('/api/user', userRouter);
 app.use("/api/image", imageRouter);
 app.get('/', (req, res) => res.send("API Working"));
 
-app.listen(PORT, () => console.log(`Server Running on ${PORT}`));
+// ❌ Remove app.listen()
+// ✅ Instead, export app for Vercel
+export default app;
