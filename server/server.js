@@ -9,7 +9,7 @@ const app = express();
 
 // CORS config
 app.use(cors({
-  origin: "https://imagify-frontend-jade.vercel.app",
+  origin: "https://imagify-alpha-hazel.vercel.app/",
   credentials: true,
 }));
 
