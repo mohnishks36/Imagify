@@ -13,7 +13,10 @@ const AppContextProvider = (props) => {
 
     const navigate = useNavigate();
 
-    const backendUrl = import.meta.env.VITE_BACKEND_URL;
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
+
+
 
     const logout = () => {
         localStorage.removeItem("token");
@@ -86,6 +89,10 @@ const AppContextProvider = (props) => {
         logout,
         generateImage,
     };
+
+    useEffect(() => {
+    console.log("VITE_BACKEND_URL loaded:", backendUrl);
+}, []);
 
     return (
         <AppContext.Provider value={value}>
